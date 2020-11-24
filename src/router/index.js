@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import About from '../views/About.vue'
-import Category from '../views/Category.vue'
-import Login from '../views/Login.vue'
-import ProductList from '../views/ProductList.vue'
-import ProductDetail from '../views/ProductDetail.vue'
-import Cart from '../views/Cart.vue'
+const Home = () => import('../views/Home.vue')
+const About = () => import('../views/About.vue')
+const Category = () => import('../views/Category.vue')
+const Login = () => import('../views/Login.vue')
+const ProductList = () => import('../views/ProductList.vue')
+const ProductDetail = () => import('../views/ProductDetail.vue')
+const Cart = () => import('../views/Cart.vue')
 
 import UserRoute from './modules/user';
 

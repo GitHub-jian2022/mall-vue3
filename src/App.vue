@@ -9,32 +9,32 @@
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-  data () {
-      return {
-        transitionName: 'slide-left'
+  name: "App",
+  data() {
+    return {
+      transitionName: "slide-left",
+    };
+  },
+  watch: {
+    $route(to, from) {
+      // 有主级到次级
+      if (to.meta.index > from.meta.index) {
+        this.transitionName = "slide-left"; // 向左滑动
+      } else if (to.meta.index < from.meta.index) {
+        // 由次级到主级
+        this.transitionName = "slide-right";
+      } else {
+        this.transitionName = ""; //同级无过渡效果
       }
     },
-    watch: {
-      $route(to, from) {
-        // 有主级到次级
-        if (to.meta.index > from.meta.index) {
-          this.transitionName = 'slide-left' // 向左滑动
-        } else if (to.meta.index < from.meta.index) {
-          // 由次级到主级
-          this.transitionName = 'slide-right'
-        } else {
-          this.transitionName = ''   //同级无过渡效果
-        }
-      }
-    }
-}
+  },
+};
 </script>
 
 <style lang="less">
-html, body {
+html,
+body {
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -47,41 +47,41 @@ html, body {
   color: #2c3e50;
   margin-top: 60px;
 }
-.router-view{
-    width: 100%;
-    height: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: 0 auto;
-    -webkit-overflow-scrolling: touch;
+.router-view {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: 0 auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .slide-right-enter-active,
 .slide-right-leave-active,
 .slide-left-enter-active,
-.slide-left-leave-active{
-    height: 100%;
-    will-change: transform;
-    transition: all 500ms;
-    position: absolute;
-    backface-visibility: hidden;
+.slide-left-leave-active {
+  height: 100%;
+  will-change: transform;
+  transition: all 500ms;
+  position: absolute;
+  backface-visibility: hidden;
 }
-.slide-right-enter{
-    opacity: 0;
-    transform: translate3d(-100%, 0, 0);
+.slide-right-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
 }
-.slide-right-leave-active{
-    opacity: 0;
-    transform: translate3d(100%, 0, 0);
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
 }
-.slide-left-enter{
-    opacity: 0;
-    transform: translate3d(100%, 0, 0);
+.slide-left-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
 }
-.slide-left-leave-active{
-    opacity: 0;
-    transform: translate3d(-100%, 0, 0);
+.slide-left-leave-active {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
 }
 
 .van-badge--fixed {
