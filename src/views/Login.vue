@@ -2,7 +2,8 @@
 <template>
   <div class="login">
     <s-header :name="type == 'login' ? '登录' : '注册'" :back="'/home'"></s-header>
-    <img class="logo" src="//s.yezgea02.com/1604045825972/newbee-mall-vue3-app-logo.png" alt="">
+    <!-- <img class="logo" src="//s.yezgea02.com/1604045825972/newbee-mall-vue3-app-logo.png" alt=""> -->
+    <img class="logo" src="http://47.100.138.242:8085/images/logo.png" alt="">
     <div v-if="type == 'login'" class="login-body login">
       <van-form @submit="onSubmit">
         <van-field
@@ -33,7 +34,7 @@
         </van-field>
         <div style="margin: 16px;">
           <div class="link-register" @click="toggle('register')">立即注册</div>
-          <van-button round block color="#1baeae" native-type="submit">登录</van-button>
+          <van-button round block color="#FD4141" native-type="submit">登录</van-button>
         </div>
       </van-form>
     </div>
@@ -67,7 +68,7 @@
         </van-field>
         <div style="margin: 16px;">
           <div class="link-login" @click="toggle('login')">已有登录账号</div>
-          <van-button round block color="#1baeae" native-type="submit">注册</van-button>
+          <van-button round block color="#FD4141" native-type="submit">注册</van-button>
         </div>
       </van-form>
     </div>
