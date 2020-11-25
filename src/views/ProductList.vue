@@ -9,7 +9,7 @@
         </div>
         <span class="search-btn" @click="getSearch">搜索</span>
       </header>
-      <van-tabs type="card" color="#1baeae" @click="changeTab">
+      <van-tabs type="card" color="#FD4141" @click="changeTab">
         <van-tab title="推荐" name></van-tab>
         <van-tab title="新品" name="new"></van-tab>
         <van-tab title="价格" name="price"></van-tab>
@@ -40,7 +40,7 @@
               </div>
             </div>
           </template>
-          <img class="empty" v-else src="//s.yezgea02.com/1604041313083/kesrtd.png" alt="搜索" />
+          <img class="empty" v-else :src="emptyImg" alt="搜索" />
         </van-list>
       </van-pull-refresh>
     </div>
@@ -51,17 +51,18 @@
 import { reactive, onMounted, toRefs } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { search } from "@/service/good";
+import emptyImg from '@/assets/images/empty.png'
 
 export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
     const state = reactive({
+      emptyImg,
       keyword: route.query.keyword || "",
       searchBtn: false,
       seclectActive: false,
       refreshing: false,
-      list: [],
       loading: false,
       finished: false,
       productList: [],
@@ -81,6 +82,7 @@ export default {
         state.loading = false;
         return;
       }
+      state.loading = true;
       const {
         data: { data, total }
       } = await search({
@@ -89,7 +91,6 @@ export default {
         keyword: state.keyword,
         sort: state.sort
       });
-      console.log('data: ', data);
 
       state.productList = state.productList.concat(data);
       state.total = total;

@@ -14,10 +14,11 @@ export default {
 
   actions: {
     async updateCartCount({ commit }) {
-      const { data } = await getCartCount()
-      // console.log('data: ', data);
+      const res = await getCartCount()
+      // console.log('res: ', res);
+      const count = res.data.count || 0
       commit('addCart', {
-        count: data.count || 0
+        count
       })
     }
   },

@@ -1,17 +1,20 @@
 <template>
-    <div class="good-item" v-for="(item, index) in list" :key="index" @click="clickItem(item.goodsId)">
-      <van-checkbox :name="item.id" @click="checkBoxClick" />
-      <div class="good-img">
-        <img :src="$filters.prefix(item.goodsCoverImg)" alt="" />
-      </div>
-      <div class="good-desc">
-        <div class="good-title">
-          <span>{{ item.goodsName }}</span>
+    <div class="good-list" v-if="list.length > 0">
+      <div class="good-item" v-for="(item, index) in list" :key="index" @click="clickItem(item.goodsId)">
+        <van-checkbox :name="item.id" @click="checkBoxClick" />
+        <div class="good-img">
+          <img :src="$filters.prefix(item.goodsCoverImg)" alt="" />
         </div>
-        <div class="good-btn">
-          <div class="price">¥{{ item.sellingPrice }}</div>
+        <div class="good-desc">
+          <div class="good-title">
+            <span>{{ item.goodsName }}</span>
+          </div>
+          <div class="good-btn">
+            <div class="price">¥{{ item.sellingPrice }}</div>
+          </div>
         </div>
       </div>
+
     </div>
 </template>
 

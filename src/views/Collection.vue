@@ -4,13 +4,23 @@
     <s-header :name="'我的收藏'"></s-header>
 
     <div class="collection-body">
-      <van-checkbox-group
-        @change="groupChange"
-        v-model="result"
-        ref="checkboxGroup"
-      >
-        <collection-list :list="list" @clickItem="clickItem" />
-      </van-checkbox-group>
+      <van-pull-refresh v-model="refreshing" @refresh="onRefresh" class="product-list-refresh">
+        <van-list
+          v-model:loading="loading"
+          :finished="finished"
+          :finished-text="list.length>=total ? '没有更多了' : ''"
+          @load="onLoad"
+          @offset="10"
+        >
+          <van-checkbox-group
+            @change="groupChange"
+            v-model="result"
+            ref="checkboxGroup"
+          >
+            <collection-list :list="list" @clickItem="clickItem" />
+          </van-checkbox-group>
+        </van-list>
+      </van-pull-refresh>
     </div>
 
     <van-action-bar class="footer">
@@ -38,6 +48,11 @@ export default {
     const state = reactive({
       list: [],
       result: [],
+      refreshing: false,
+      loading: false,
+      finished: false,
+      total: 0,
+      page: 1,
     });
 
     onMounted(async () => {
@@ -45,10 +60,43 @@ export default {
     });
 
     const init = async () => {
-      Toast.loading({ message: "加载中...", forbidClick: true });
-      const { data } = await getCollection({ page: 1 });
-      state.list = data;
-      Toast.clear();
+      state.loading = true;
+      const { data: { data, total } } = await getCollection({page: state.page,size: 8 });
+      state.list = state.list.concat(data);
+      state.total = total;
+      state.loading = false;
+      //加载全部
+      if (state.list.length >= total) {
+        state.finished = true;
+      }
+    };
+
+    const onLoad = () => {
+      //触底，且未加载全部，页码+1
+      if (!state.refreshing && state.list.length < state.total) {
+        state.page = state.page + 1;
+        console.log('state.page: ', state.page);
+      }
+      //如果是下拉清空原数据
+      if (state.refreshing) {
+        console.log('下拉: ');
+        state.list = [];
+        state.refreshing = false;
+      }
+      //获取数据
+      init();
+    };
+
+    // 下拉刷新
+    const onRefresh = () => {
+      state.refreshing = true;
+      // 清空列表数据
+      state.finished = false;
+      // 重新加载数据
+      // 将 loading 设置为 true，表示处于加载状态
+      state.loading = true;
+      state.page = 1;
+      onLoad();
     };
 
     const groupChange = (result) => {
@@ -56,7 +104,6 @@ export default {
         console.log("checkAll");
         state.checkAll = true;
       } else {
-        console.log(3);
         state.checkAll = false;
       }
       state.result = result;
@@ -98,7 +145,9 @@ export default {
       groupChange,
       selectAll,
       deleteAll,
-      clickItem
+      clickItem,
+      onLoad,
+      onRefresh
     };
   },
 };
@@ -108,6 +157,9 @@ export default {
 @import "../common/style/mixin";
 .collection-box {
   .collection-body {
+    height: calc(~"(100vh - 70px)");
+    overflow: hidden;
+    overflow-y: scroll;
     margin-top: 50px;
     margin-bottom: 80px;
   }

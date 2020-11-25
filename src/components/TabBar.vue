@@ -34,14 +34,14 @@ export default {
     onMounted(() => {
       const token = getLocal("token");
       const path = route.path;
-      console.log("path: ", path);
+      // console.log("path: ", path);
       if (token && !["/home", "/category"].includes(path)) {
         store.dispatch('cart/updateCartCount')
       }
     });
     const count = computed(() => {
       const { cartCount } = store.state.cart;
-      console.log('cartCount: ', cartCount);
+      // console.log('cartCount: ', cartCount);
       return cartCount;
     });
 

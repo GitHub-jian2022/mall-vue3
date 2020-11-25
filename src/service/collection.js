@@ -5,31 +5,29 @@ export function addCollection(params) {
 }
 
 export function getCollection(params) {
+  console.log('params: ', params);
   return axios.get('/collection', { params });
 }
 
+//是否收藏了商品,返回count:0未收藏
 export function getCollectionCountByGoodsId(goodsId) {
-    return axios.get(`/collection/count/${goodsId}`);
-  }
-
-export function getCollectionCount(params) {
-  return axios.get('/collection/count', { params });
+  return axios.get(`/collection/count/${goodsId}`);
 }
 
 export function deleteCollection(data) {
-    console.log('data: ', data);
-    return axios({
-        url: '/collection',
-        method: 'delete',
-        data
-    })
-  }
+  console.log('data: ', data);
+  return axios({
+    url: '/collection',
+    method: 'delete',
+    data
+  })
+}
 
 export function deleteCollectionByGoodsId(data) {
   return axios({
-      url: '/collection/goodsId',
-      method: 'delete',
-      data
+    url: '/collection/goodsId',
+    method: 'delete',
+    data
   })
 }
 

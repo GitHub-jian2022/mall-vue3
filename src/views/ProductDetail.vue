@@ -34,6 +34,7 @@
           v-html="detail.goodsDetailContent || ''"
         ></div>
       </div>
+      <div class="product-detail" v-html="detail.goods_detail"></div>
     </div>
     <van-action-bar>
       <van-action-bar-icon icon="chat-o" text="客服" />
