@@ -129,6 +129,8 @@ export default {
       })
         .then(async () => {
           await deleteCollection({ ids });
+          state.list = [];
+          state.page = 1;
           init();
         })
         .catch(() => {
