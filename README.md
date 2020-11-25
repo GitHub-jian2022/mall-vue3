@@ -1,6 +1,7 @@
 # mall-vue3
 
-## 参考开源https://github.com/newbee-ltd/newbee-mall-vue3-app,感兴趣的可以去看看
+## 参考开源
+## https://github.com/newbee-ltd/newbee-mall-vue3-app
 ## 在线api文档:
 ## http://47.100.138.242:8085/apidom/frontend/index.html
 ## 后台接口使用koa,mysql,链接:
