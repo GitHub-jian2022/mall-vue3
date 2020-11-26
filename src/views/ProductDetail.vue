@@ -8,7 +8,7 @@
             v-for="(item, index) in detail.goodsCarouselList"
             :key="index"
           >
-            <img :src="item" alt="" />
+            <img :src="item" alt="" @click="previewImg(index)" />
           </van-swipe-item>
         </van-swipe>
       </div>
@@ -72,7 +72,7 @@ import {
 } from "@/service/collection";
 import { addCart } from "@/service/cart";
 import sHeader from "@/components/SimpleHeader";
-import { Toast } from "vant";
+import { Toast, ImagePreview } from "vant";
 import { prefix } from "@/common/js/utils";
 export default {
   setup() {
@@ -152,6 +152,14 @@ export default {
       return store.state.cart.cartCount;
     });
 
+    const previewImg = (index) => {
+      const { goodsCarouselList } = state.detail
+      ImagePreview({
+        images: goodsCarouselList,
+        startPosition: index,
+      });
+    };
+
     return {
       ...toRefs(state),
       goBack,
@@ -160,6 +168,7 @@ export default {
       handleAddCart,
       goToCart,
       count,
+      previewImg,
     };
   },
   components: {
