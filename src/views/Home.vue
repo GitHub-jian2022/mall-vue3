@@ -199,6 +199,9 @@ export default {
         .wh(36px, 36px);
         margin: 13px auto 8px auto;
       }
+      span {
+        font-size: 16px;
+      }
     }
   }
   .good {
