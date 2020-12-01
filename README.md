@@ -14,35 +14,35 @@
 
 项目展示
 
-![项目展示](https://gitee.com/ianj/mall-vue3/raw/master/src/assets/screenshot/login.jpg)
+![项目展示](./src/assets/screenshot/login.jpg)
 
 
 
-![](https://gitee.com/ianj/mall-vue3/raw/master/src/assets/screenshot/home.jpg)
+![](./src/assets/screenshot/home.jpg)
 
-![](https://gitee.com/ianj/mall-vue3/raw/master/src/assets/screenshot/category.jpg)
+![](./src/assets/screenshot/category.jpg)
 
-![](https://gitee.com/ianj/mall-vue3/raw/master/src/assets/screenshot/cart.jpg)
+![](./src/assets/screenshot/cart.jpg)
 
-![](https://gitee.com/ianj/mall-vue3/raw/master/src/assets/screenshot/profile.jpg)
+![](./src/assets/screenshot/profile.jpg)
 
-![](https://gitee.com/ianj/mall-vue3/raw/master/src/assets/screenshot/productList.jpg)
+![](./src/assets/screenshot/productList.jpg)
 
-![](https://gitee.com/ianj/mall-vue3/raw/master/src/assets/screenshot/productDetail.jpg)
-
-
-
-![](https://gitee.com/ianj/mall-vue3/raw/master/src/assets/screenshot/collection.jpg)
+![](./src/assets/screenshot/productDetail.jpg)
 
 
 
+![](./src/assets/screenshot/collection.jpg)
 
 
-![](https://gitee.com/ianj/mall-vue3/raw/master/src/assets/screenshot/account.jpg)
 
 
 
-![](https://gitee.com/ianj/mall-vue3/raw/master/src/assets/screenshot/address.jpg)
+![](./src/assets/screenshot/account.jpg)
+
+
+
+![](./src/assets/screenshot/address.jpg)
 
 
 
