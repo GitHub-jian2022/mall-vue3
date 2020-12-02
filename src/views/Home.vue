@@ -15,42 +15,12 @@
       </div>
     </div>
 
-    <div class="good">
-      <header class="good-header">新品上线</header>
-      <div class="good-box">
-        <div class="good-item" v-for="item in newGoodses" :key="item.goodsId" @click="goToDetail(item)">
-          <img :src="$filters.prefix(item.goodsCoverImg)" alt="">
-          <div class="good-desc">
-            <div class="title">{{ item.goodsName }}</div>
-            <div class="price">¥ {{ item.sellingPrice }}</div>
-          </div>
-        </div>
-      </div>
+    <div class="goods">
+      <home-list :list="hots" :title="'新品上线'" />
+      <home-list :list="newGoodses" :title="'热门商品'" />
+      <home-list :list="recommends" :title="'推荐商品'" />
     </div>
-    <div class="good">
-      <header class="good-header">热门商品</header>
-      <div class="good-box">
-        <div class="good-item" v-for="item in hots" :key="item.goodsId" @click="goToDetail(item)">
-          <img :src="$filters.prefix(item.goodsCoverImg)" alt="">
-          <div class="good-desc">
-            <div class="title">{{ item.goodsName }}</div>
-            <div class="price">¥ {{ item.sellingPrice }}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="good" :style="{ paddingBottom: '100px'}">
-      <header class="good-header">最新推荐</header>
-      <div class="good-box">
-        <div class="good-item" v-for="item in recommends" :key="item.goodsId" @click="goToDetail(item)">
-          <img :src="$filters.prefix(item.goodsCoverImg)" alt="">
-          <div class="good-desc">
-            <div class="title">{{ item.goodsName }}</div>
-            <div class="price">¥ {{ item.sellingPrice }}</div>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
     <tabbar />
 
@@ -59,8 +29,8 @@
 
 <script>
 import { reactive, onMounted, toRefs, nextTick } from 'vue'
-import { useRouter } from 'vue-router'
 import swiper from '@/components/Swiper'
+import HomeList from '@/components/HomeList';
 import tabbar from '@/components/TabBar'
 import { getHome } from '@/service/home'
 import { getLocal } from '@/common/js/utils'
@@ -69,10 +39,10 @@ export default {
   name: 'home',
   components: {
     swiper,
+    HomeList,
     tabbar
   },
   setup() {
-    const router = useRouter()
     const state = reactive({
       swiperList: [], // 轮播图列表
       isLogin: false, // 是否已登录
@@ -127,17 +97,12 @@ export default {
       })
     })
 
-    const goToDetail = (item) => {
-      router.push({ path: `/product/${item.goodsId}` })
-    }
-
     const tips = () => {
       Toast('敬请期待');
     }
 
     return {
       ...toRefs(state),
-      goToDetail,
       tips
     }
   },
@@ -204,46 +169,8 @@ export default {
       }
     }
   }
-  .good {
-    .good-header {
-      background: #f9f9f9;
-      height: 50px;
-      line-height: 50px;
-      text-align: center;
-      color: @primary;
-      font-size: 16px;
-      font-weight: 500;
-    }
-    .good-box {
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      .good-item {
-        box-sizing: border-box;
-        width: 50%;
-        border-bottom: 1PX solid #e9e9e9;
-        padding: 10px 10px;
-        img {
-          display: block;
-          width: 120px;
-          margin: 0 auto;
-        }
-        .good-desc {
-          text-align: center;
-          font-size: 14px;
-          padding: 10px 0;
-          .title {
-            .text-line-num(4);
-            color: #222333;
-          }
-          .price {
-            color: @primary;
-          }
-        }
-        &:nth-child(2n + 1) {
-          border-right: 1PX solid #e9e9e9;
-        }
-      }
-    }
+
+  .goods {
+    padding-bottom: 48px;
   }
 </style>
