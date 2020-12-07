@@ -29,7 +29,7 @@
                     <div class="category-list" v-for="(products, index) in category.children" :key="index">
                       <p class="catogory-title">{{products.category_name}}</p>
                       <div class="product-item" v-for="(product, index) in products.children" :key="index" @click="selectProduct(product)">
-                        <img src="//s.weituibao.com/1583591077131/%E5%88%86%E7%B1%BB.png" class="product-img"/>
+                        <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3062962250,1882153521&fm=26&gp=0.jpg" class="product-img"/>
                         <p v-text="product.category_name" class="product-title"></p>
                       </div>
                     </div>
